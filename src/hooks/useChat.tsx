@@ -2,7 +2,7 @@ import { clearSearchBar, getPreferenceValues, showToast, Toast } from "@raycast/
 import { useCallback, useMemo, useState } from "react";
 import say from "say";
 import { v4 as uuidv4 } from "uuid";
-import { Chat, ChatHook, CreateChatCompletionDeltaResponse, Model } from "../type";
+import { Chat, ChatHook, CreateChatCompletionDeltaResponse, Model, ChatModel } from "../type";
 import { chatTransfomer } from "../utils";
 import { useAutoTTS } from "./useAutoTTS";
 import { getConfiguration, useChatGPT } from "./useChatGPT";
@@ -66,12 +66,14 @@ export function useChat<T extends Chat>(props: T[]): ChatHook {
       };
     };
 
+    const chatModel = model as ChatModel;
+
     await chatGPT
       .createChatCompletion(
         {
-          model: model.option,
-          temperature: Number(model.temperature),
-          messages: [...chatTransfomer(data.reverse(), model.prompt), { role: "user", content: question }],
+          model: chatModel.option,
+          temperature: Number(chatModel.temperature),
+          messages: [...chatTransfomer(data.reverse(), chatModel.prompt), { role: "user", content: question }],
           stream: useStream,
         },
         {

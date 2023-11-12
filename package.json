@@ -62,6 +62,13 @@
       "subtitle": "ChatGPT",
       "description": "Collection of your custom and default model",
       "mode": "view"
+    },
+    {
+      "name": "image",
+      "title": "Generate Image",
+      "subtitle": "ChatGPT",
+      "description": "Generates a image from a prompt",
+      "mode": "view"
     }
   ],
   "preferences": [
@@ -228,6 +235,28 @@
       "type": "textfield",
       "title": "Azure Deployment",
       "required": false
+    },
+    {
+      "name": "imageSize",
+      "description": "Size of the image to be generated",
+      "type": "dropdown",
+      "title": "Image Size",
+      "data": [
+        {
+          "title": "256x256",
+          "value": "256x256"
+        },
+        {
+          "title": "512x512",
+          "value": "512x512"
+        },
+        {
+          "title": "1024x1024",
+          "value": "1024x1024"
+        }
+      ],
+      "required": false,
+      "default": "512x512"
     }
   ],
   "dependencies": {

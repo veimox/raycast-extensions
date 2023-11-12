@@ -1,4 +1,4 @@
-import type { ChatCompletionRequestMessage } from "openai";
+import type { ChatCompletionRequestMessage, CreateImageRequestSizeEnum } from "openai";
 
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -33,10 +33,18 @@ export interface Model {
   created_at: string;
   name: string;
   prompt: string;
+  pinned: boolean;
+  option: string;
+}
+
+export type ChatModel = Model & {
   option: "gpt-3.5-turbo" | "gpt-3.5-turbo-0301" | "gpt-4" | "gpt-4-0314" | "gpt-4-32k" | "gpt-4-32k-0314" | string;
   temperature: string;
-  pinned: boolean;
-}
+};
+
+export type ImageModel = Model & {
+  option: "dall-e-2" | "dall-e-3" | string;
+};
 
 type PromiseFunctionNoArg = () => Promise<void>;
 type PromiseFunctionWithOneArg<T> = (arg: T) => Promise<void>;
@@ -125,3 +133,5 @@ export interface ConfigurationPreferences {
   useApiEndpoint: boolean;
   apiEndpoint: string;
 }
+
+export type { CreateImageRequestSizeEnum as ImageSize };

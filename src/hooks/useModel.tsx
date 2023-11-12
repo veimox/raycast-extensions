@@ -1,9 +1,9 @@
 import { LocalStorage, showToast, Toast } from "@raycast/api";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Model, ModelHook } from "../type";
+import { Model, ModelHook, ImageModel, ChatModel } from "../type";
 import { getConfiguration, useChatGPT } from "./useChatGPT";
 
-export const DEFAULT_MODEL: Model = {
+export const DEFAULT_MODEL: ChatModel = {
   id: "default",
   updated_at: new Date().toISOString(),
   created_at: new Date().toISOString(),
@@ -11,6 +11,16 @@ export const DEFAULT_MODEL: Model = {
   prompt: "You are a helpful assistant.",
   option: "gpt-3.5-turbo",
   temperature: "1",
+  pinned: false,
+};
+
+export const DEFAULT_IMAGE_MODEL: ImageModel = {
+  id: "default",
+  updated_at: new Date().toISOString(),
+  created_at: new Date().toISOString(),
+  name: "Default",
+  prompt: "You are a helpful image generator.",
+  option: "dall-e-2",
   pinned: false,
 };
 
